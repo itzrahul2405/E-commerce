@@ -14,9 +14,9 @@ const Navigationbar = (props) => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="mx-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/">Store</Nav.Link>
-            <Nav.Link href="/">About</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
           </Nav>
           <Nav>
             <Button variant='light' onClick={props.onShow}>Cart</Button>

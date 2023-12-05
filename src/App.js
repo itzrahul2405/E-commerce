@@ -7,6 +7,14 @@ import { useState } from 'react';
 import Cart from './components/Cart/Cart';
 import CartProvider from './components/CartProvider';
 
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import AboutPage from './components/pages/About';
+
+const router = createBrowserRouter([
+  {path: '/', element: <Product />},
+  {path: '/about', element: <AboutPage />}
+])
+
 
 function App() {
 
@@ -25,7 +33,8 @@ function App() {
         {isCartShown && <Cart onClose={hideCartHandler} />}
         <Navigationbar onShow={showCartHandler}/>
         <Header />
-        <Product />     
+        {/* <Product />      */}
+        <RouterProvider router={router}/>
         <Footer />
       </div>
     </CartProvider>
