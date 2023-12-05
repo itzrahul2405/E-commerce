@@ -59,7 +59,7 @@ const Product = () => {
                         <Card.Img variant="top" src={product.imageUrl} style={{ transition: 'transform 0.3s', width: '100%' }} className="hover-zoom"/>
                         <div className='mt-5 d-flex justify-content-between'>
                             <Card.Text>${product.price}</Card.Text>
-                            <Button variant='warning'>Add To Cart</Button>
+                            <Button variant='warning' >Add To Cart</Button>
                         </div>
                     </Card.Body>
                 </Card>
