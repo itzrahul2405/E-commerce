@@ -1,67 +1,33 @@
 import './Product.css'
 import {Container, Row, Col, Card, Button} from 'react-bootstrap';
+import CartContext from '../cart-context';
+import { useContext } from 'react';
 
 const Product = () => {
 
-    const productsArr = [
+    const cartCtx = useContext(CartContext)
 
-        {
-        
-        title: 'Colors',
-        
-        price: 100,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-        
-        },
-        
-        {
-        
-        title: 'Black and white Colors',
-        
-        price: 50,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-        
-        },
-        
-        {
-        
-        title: 'Yellow and Black Colors',
-        
-        price: 70,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-        
-        },
-        
-        {
-        
-        title: 'Blue Color',
-        
-        price: 100,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-        
-        }
-        
-        ]
+    const addItemToCartHandler = (title) => {
+        cartCtx.addToCart(title)
+    }
 
   return (
     <Container>
       <h2 className="text-center mt-5">MUSIC</h2>
       <Row xs={1} md={2} className="d-flex justify-content-between" >
-        {productsArr.map((product, index) => (
+        {cartCtx.items.map((product, index) => (
             <Col key={index}>
                 <Card style={{ width: '18rem', border: 'none'}}>
                     <Card.Title className='text-center'>{product.title}</Card.Title>
-                    <Card.Body>
-                        <Card.Img variant="top" src={product.imageUrl} style={{ transition: 'transform 0.3s', width: '100%' }} className="hover-zoom"/>
+
+                    <Card.Body className='hover-zoom'>
+                        <img variant="top" src={product.imageUrl} style={{ transition: 'transform 0.3s', width: '100%' }} className="img-fluid"/>
                         <div className='mt-5 d-flex justify-content-between'>
                             <Card.Text>${product.price}</Card.Text>
-                            <Button variant='warning' >Add To Cart</Button>
+                            <Button variant='warning' onClick={() => addItemToCartHandler(product.title)}>Add To Cart</Button>
                         </div>
                     </Card.Body>
+
                 </Card>
             </Col>
         ))}

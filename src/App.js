@@ -5,6 +5,7 @@ import Product from './components/Product/Product';
 import Footer from './components/Footer';
 import { useState } from 'react';
 import Cart from './components/Cart/Cart';
+import CartProvider from './components/CartProvider';
 
 
 function App() {
@@ -19,13 +20,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {isCartShown && <Cart onClose={hideCartHandler} />}
-      <Navigationbar onShow={showCartHandler}/>
-      <Header />
-      <Product />     
-      <Footer />
-    </div>
+    <CartProvider >
+      <div className="App">
+        {isCartShown && <Cart onClose={hideCartHandler} />}
+        <Navigationbar onShow={showCartHandler}/>
+        <Header />
+        <Product />     
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
 
