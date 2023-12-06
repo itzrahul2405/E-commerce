@@ -54,7 +54,7 @@ const Cart = (props) => {
                       marginRight: "10px",
                     }}
                   />
-                  <p className="flex-wrap">{item.title}</p>
+                  <p className="flex-wrap" >{item.title}</p>
                 </Col>
                 <Col xs={2} className="d-flex justify-content-center">
                   <p>{item.price}</p>

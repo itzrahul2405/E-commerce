@@ -8,7 +8,13 @@ const CartProvider = (props) => {
         { title: 'Colors', price: 100, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',},
         { title: 'Black and white Colors', price: 50, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',},
         { title: 'Yellow and Black Colors', price: 70, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',},
-        { title: 'Blue Color', price: 100, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',}
+        { title: 'Blue Color', price: 100, imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',},
+        { title: "Rock Anthems", price: 90, imageUrl: "https://placekitten.com/300/300",},
+        { title: "Bollywood Melodies", price: 80, imageUrl: "https://placekitten.com/301/300", },
+        { title: "Jazz Classics", price: 120, imageUrl: "https://placekitten.com/302/300", },
+        { title: "Instrumental Bliss", price: 60, imageUrl: "https://placekitten.com/303/300", },
+        
+        
         ]
 
     const [cartItems, setCartItems] = useState([])

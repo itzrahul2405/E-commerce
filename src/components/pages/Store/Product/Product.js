@@ -13,11 +13,11 @@ const Product = (props) => {
   return (
     <Container>
       <h2 className="text-center mt-5">MUSIC</h2>
-      <Row xs={1} md={2} className="d-flex justify-content-between">
+      <Row xs={1} md={4} className="d-flex justify-content-between">
         {cartCtx.items.map((product, index) => (
           <Col key={index}>
             <Card style={{ width: "18rem", border: "none" }}>
-              <Card.Title className="text-center">{product.title}</Card.Title>
+              <Card.Title className="text-center" >{product.title}</Card.Title>
 
               <Card.Body className="hover-zoom">
                 <img
