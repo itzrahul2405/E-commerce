@@ -14,7 +14,9 @@ const Cart = (props) => {
     if(cartCtx.totalQuantity === 0){
       alert('Please Add Something!')
     }
-    alert('Thank You For Purchasing');
+    else{
+      alert('Thank You For Purchasing');
+    }
   }
 
 
@@ -38,6 +40,7 @@ const Cart = (props) => {
               <h4>Quantity</h4>
             </Col>
           </Row>
+
           <>
             {cartCtx.cartItems.map((item, index) => (
               <Row key={index} style={{ border: "none" }} className="mb-5">
@@ -63,9 +66,13 @@ const Cart = (props) => {
               </Row>
             ))}
           </>
+
           <p>Total Price: </p>
           <h4>${cartCtx.totalPrice}</h4>
         </Modal.Body>
+        
+        
+        {cartCtx.totalQuantity===0 && <p><strong><i>Cart Is Empty, Please add something!</i></strong></p>}
 
         <Modal.Footer>
             <Button onClick={purchaseHandler}>Purchase</Button>

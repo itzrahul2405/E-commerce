@@ -8,7 +8,9 @@ const Footer = () => {
             The Generics
         </div>
         <div>
-
+            <img src="" alt=""/>
+            <img src="" alt=""/>
+            <img src="" alt=""/>
         </div>
     </Container>;
 };

@@ -1,40 +1,46 @@
-import './App.css';
-import Navigationbar from './components/Navigationbar';
-import Header from './components/Header';
-import Product from './components/Product/Product';
-import Footer from './components/Footer';
-import { useState } from 'react';
-import Cart from './components/Cart/Cart';
-import CartProvider from './components/CartProvider';
+import "./App.css";
+import Navigationbar from "./components/Navigationbar";
+import Footer from "./components/Footer";
+import { useState } from "react";
+import Cart from "./components/Cart/Cart";
+import CartProvider from "./components/CartProvider";
 
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import AboutPage from './components/pages/About';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {path: '/', element: <Product />},
-  {path: '/about', element: <AboutPage />}
-])
+import HeaderStore from "./components/pages/Store/headerStore";
+import HeaderAbout from "./components/pages/About/headerAbout";
+import HeaderHome from "./components/pages/Home/headerHome";
 
+// const router = createBrowserRouter([
+//   {path: '/', element: <Product onShow={showCartHandler}/>},
+//   {path: '/about', element: <AboutPage />},
+//   {path: '/home', element: <Home />}
+// ])
 
 function App() {
-
-  const [isCartShown, setIsCartShown] = useState(false)
+  const [isCartShown, setIsCartShown] = useState(false);
   const showCartHandler = () => {
-    setIsCartShown(true)
-  }
+    setIsCartShown(true);
+  };
 
   const hideCartHandler = () => {
-    setIsCartShown(false)
-  }
+    setIsCartShown(false);
+  };
+
+  const router = createBrowserRouter([
+    { path: "/", element: <HeaderStore onShow={showCartHandler} /> },
+    { path: "/about", element: <HeaderAbout /> },
+    { path: "/home", element: <HeaderHome /> },
+  ]);
 
   return (
-    <CartProvider >
+    <CartProvider>
       <div className="App">
         {isCartShown && <Cart onClose={hideCartHandler} />}
-        <Navigationbar onShow={showCartHandler}/>
-        <Header />
-        {/* <Product />      */}
-        <RouterProvider router={router}/>
+        <Navigationbar onShow={showCartHandler} />
+      
+        <RouterProvider router={router} />
+
         <Footer />
       </div>
     </CartProvider>

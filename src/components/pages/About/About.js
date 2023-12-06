@@ -17,13 +17,21 @@ const AboutPage = () => {
         enjoyed by corrupt, are accusing him of all pleasures, and seek his own,
         or, to the needs of the agony of the choice. We hate the fellow.
       </p>
-      <div style={{display: 'flex'}}>
+      <div style={{ display: "flex" }}>
         <img
-          src="../../images/images.jpeg"
+          src="https://www.adobe.com/acrobat/hub/media_173d13651460eb7e12c0ef4cf8410e0960a20f0ee.jpeg?width=750&format=jpeg&optimize=medium"
           alt=""
-          style={{ width: "1500px", height: "400px", border: '1px solid black',borderRadius: '50%', marginLeft: '20px', marginRight: '50px' }}
+          style={{
+            width: "1500px",
+            height: "400px",
+            border: "1px solid black",
+            borderRadius: "50%",
+            marginLeft: "20px",
+            marginRight: "50px",
+          }}
         />
-        <p style={{margin: '100px'}}>
+
+        <p style={{ margin: "100px" }}>
           Lorem ipsum dolor, sit amet consectetur rebates. The distinction, that
           arise from or to. The greater, therefore, an obstacle to the duties of
           the debts receives the very great importance to us that these are
