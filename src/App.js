@@ -7,9 +7,10 @@ import CartProvider from "./components/CartProvider";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import HeaderStore from "./components/pages/Store/headerStore";
-import HeaderAbout from "./components/pages/About/headerAbout";
-import HeaderHome from "./components/pages/Home/headerHome";
+import StorePage from "./components/pages/Store/StorePage";
+import AboutPage from "./components/pages/About/AboutPage";
+import HomePage from "./components/pages/Home/HomePage";
+import ContactUsPage from "./components/pages/ContactUs/ContactUsPage";
 
 // const router = createBrowserRouter([
 //   {path: '/', element: <Product onShow={showCartHandler}/>},
@@ -28,9 +29,10 @@ function App() {
   };
 
   const router = createBrowserRouter([
-    { path: "/", element: <HeaderStore onShow={showCartHandler} /> },
-    { path: "/about", element: <HeaderAbout /> },
-    { path: "/home", element: <HeaderHome /> },
+    { path: "/", element: <StorePage onShow={showCartHandler} /> },
+    { path: "/about", element: <AboutPage /> },
+    { path: "/home", element: <HomePage /> },
+    { path: '/contact', element: <ContactUsPage />}
   ]);
 
   return (

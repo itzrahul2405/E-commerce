@@ -3,7 +3,7 @@ import Home from "./Home";
 import HomeHeader from "./homeHeader";
 
 
-const HeaderHome = () => {
+const HomePage = () => {
   return (
     <React.Fragment>
       <HomeHeader />
@@ -12,4 +12,4 @@ const HeaderHome = () => {
   );
 };
 
-export default HeaderHome;
+export default HomePage;

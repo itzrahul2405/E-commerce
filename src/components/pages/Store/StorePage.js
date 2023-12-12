@@ -2,7 +2,7 @@ import React from "react";
 import Product from "./Product/Product";
 import Header from "../../Header";
 
-const HeaderStore = (props) => {
+const StorePage = (props) => {
   return (
     <React.Fragment>
       <Header />
@@ -11,4 +11,4 @@ const HeaderStore = (props) => {
   );
 };
 
-export default HeaderStore;
+export default StorePage;

@@ -1,14 +1,15 @@
 import React from "react";
-import AboutPage from "./About";
+import About from './About'
 import Header from "../../Header";
 
-const HeaderAbout = () => {
+const AboutPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <AboutPage />
+      <About />
     </React.Fragment>
   );
 };
 
-export default HeaderAbout;
+export default AboutPage;
+  
