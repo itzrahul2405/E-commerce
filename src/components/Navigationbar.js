@@ -21,12 +21,12 @@ const Navigationbar = (props) => {
             <Nav.Link href="/contact">Contact Us</Nav.Link>
           </Nav>
           <Nav>
-            <Button variant="light" onClick={props.onShow}>
+            {authCtx.isLoggedIn && <Button variant="light" onClick={props.onShow}>
               Cart
-            </Button>
-            <Container className="text-white bg-transparent">
+            </Button>}
+            {authCtx.isLoggedIn && <Container className="text-white bg-transparent">
               {cartCtx.totalQuantity}
-            </Container>
+            </Container>}
           </Nav>
           <Nav>
             {!authCtx.isLoggedIn && <Nav.Link href="/auth">Login</Nav.Link>}
