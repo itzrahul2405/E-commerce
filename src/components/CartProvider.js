@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartContext from "./cart-context";
-
 
 const CartProvider = (props) => {
 
@@ -40,6 +39,7 @@ const CartProvider = (props) => {
 
         setTotalPrice(prevPrice => prevPrice + targetItem.price)
 
+        
     }
 
 
@@ -59,6 +59,40 @@ const CartProvider = (props) => {
 
         setTotalPrice(prevPrice => prevPrice - existingItem.price)
     }
+
+
+    useEffect(() => {
+        let id;
+        id = localStorage.getItem('id')
+
+        const bool_id = !!id
+        if(!bool_id){           
+            fetch('https://crudcrud.com/api/116b6f5bdc0d4d2dab37c59bb4bd9639/cart',{
+                method: 'POST',
+                body: JSON.stringify({...cartItems, totalPrice: totalPrice, totalQuantity: totalQuantity}),
+                headers: {'Content-Type': 'application/json'}
+            })
+            .then((res) => {
+                if(!res.ok){
+                    throw new Error(`HTTP error! Status: ${res.status}`)
+                }
+                return res.json()
+            })
+            .then((data) => {
+                console.log(data)
+                localStorage.setItem('id', data._id)
+            })
+            .catch(err => console.log(err))
+        }
+        else{            
+            fetch(`https://crudcrud.com/api/116b6f5bdc0d4d2dab37c59bb4bd9639/cart/${id}`,{
+                method: 'PUT',
+                body: JSON.stringify({...cartItems, totalPrice: totalPrice, totalQuantity: totalQuantity}),
+                headers: {'Content-Type': 'application/json'}
+            })
+        }
+
+    }, [cartItems, totalPrice, totalQuantity])
 
     const cartContext = {
         items: productsArr,

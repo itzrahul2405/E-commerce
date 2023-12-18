@@ -22,7 +22,7 @@ export const AuthContextProvider = (props) => {
         token: token,
         isLoggedIn: userIsLoggedIn,
         login: logInHandler,
-        logout: logOutHandler
+        logout: logOutHandler,
     }
 
     return(
