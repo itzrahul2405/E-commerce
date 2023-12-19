@@ -14,6 +14,7 @@ import ContactUsPage from "./components/pages/ContactUs/ContactUsPage";
 import LoginForm from "./components/pages/login/LoginForm";
 import AuthContext from "./components/auth- context";
 
+
 // const router = createBrowserRouter([
 //   {path: '/', element: <Product onShow={showCartHandler}/>},
 //   {path: '/about', element: <AboutPage />},
@@ -24,8 +25,10 @@ function App() {
   const [isCartShown, setIsCartShown] = useState(false);
   const authCtx = useContext(AuthContext)
 
+
   const showCartHandler = () => {
     setIsCartShown(true);
+
   };
 
   const hideCartHandler = () => {

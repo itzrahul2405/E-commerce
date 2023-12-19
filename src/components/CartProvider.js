@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CartContext from "./cart-context";
 
+
 const CartProvider = (props) => {
 
     const productsArr = [
@@ -27,73 +28,67 @@ const CartProvider = (props) => {
 
         if(!existingItem){
             setCartItems([...cartItems, {...targetItem, quantity: 1}])
+
+            localStorage.setItem('cartItems', JSON.stringify([...cartItems, {...targetItem, quantity: 1}]));
         }
         else{
             setCartItems(prevItems => prevItems.map((item) => (
                 item.title !== title ? item : {...item, quantity: item.quantity + 1}
             )))
+
+            localStorage.setItem('cartItems', JSON.stringify(cartItems.map((item) => ( item.title !== title ? item : {...item, quantity: item.quantity + 1} ))));
         }
 
         // console.log(cartItems)
         setTotalQuantity(prevQuantity => prevQuantity + 1)
-
         setTotalPrice(prevPrice => prevPrice + targetItem.price)
 
         
+        localStorage.setItem('totalPrice', totalPrice + targetItem.price);
+        localStorage.setItem('totalQuantity', totalQuantity + 1);
+
     }
-
-
+   
+    
     const removeFromCartHandler = (title) => {
         const existingItem = cartItems.find((item) => item.title === title)
-
+        
         if(existingItem.quantity > 1){
             setCartItems(prevItems => prevItems.map((item) => (
                 item.title !== title ? item : {...existingItem, quantity: existingItem.quantity - 1}
-            )))
+                )))
+                
+            localStorage.setItem('cartItems', JSON.stringify(cartItems.map((item) => (item.title !== title ? item : {...existingItem, quantity: existingItem.quantity - 1} ))));
+
+
         }
         else{
             setCartItems(prevItems => prevItems.filter((item) => item.title !== title))
+
+            localStorage.setItem('cartItems', JSON.stringify(cartItems.filter((item) => item.title !== title)));
         }
-
+        
         setTotalQuantity(prevQuantity => prevQuantity - 1)
-
         setTotalPrice(prevPrice => prevPrice - existingItem.price)
+        
+        localStorage.setItem('totalPrice', totalPrice - existingItem.price);
+        localStorage.setItem('totalQuantity', totalQuantity - 1);
     }
 
 
+    
     useEffect(() => {
-        let id;
-        id = localStorage.getItem('id')
+        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [] ;
+        const storedTotalPrice = JSON.parse(localStorage.getItem('totalPrice')) || 0;
+        const storedTotalQuantity = JSON.parse(localStorage.getItem('totalQuantity')) || 0 ;
+    
+        setCartItems(storedCartItems);
+        setTotalPrice(storedTotalPrice);
+        setTotalQuantity(storedTotalQuantity);
+    }, [])
 
-        const bool_id = !!id
-        if(!bool_id){           
-            fetch('https://crudcrud.com/api/116b6f5bdc0d4d2dab37c59bb4bd9639/cart',{
-                method: 'POST',
-                body: JSON.stringify({...cartItems, totalPrice: totalPrice, totalQuantity: totalQuantity}),
-                headers: {'Content-Type': 'application/json'}
-            })
-            .then((res) => {
-                if(!res.ok){
-                    throw new Error(`HTTP error! Status: ${res.status}`)
-                }
-                return res.json()
-            })
-            .then((data) => {
-                console.log(data)
-                localStorage.setItem('id', data._id)
-            })
-            .catch(err => console.log(err))
-        }
-        else{            
-            fetch(`https://crudcrud.com/api/116b6f5bdc0d4d2dab37c59bb4bd9639/cart/${id}`,{
-                method: 'PUT',
-                body: JSON.stringify({...cartItems, totalPrice: totalPrice, totalQuantity: totalQuantity}),
-                headers: {'Content-Type': 'application/json'}
-            })
-        }
 
-    }, [cartItems, totalPrice, totalQuantity])
-
+    
     const cartContext = {
         items: productsArr,
         cartItems: cartItems,
