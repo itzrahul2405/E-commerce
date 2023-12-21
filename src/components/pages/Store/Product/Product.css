@@ -1,0 +1,15 @@
+.hover-zoom {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+.hover-zoom img:hover{
+  transform: scale(1.2);
+  filter: brightness(130%);
+}
