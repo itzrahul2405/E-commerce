@@ -56,7 +56,7 @@ const CartProvider = (props) => {
         if(existingItem.quantity > 1){
             setCartItems(prevItems => prevItems.map((item) => (
                 item.title !== title ? item : {...existingItem, quantity: existingItem.quantity - 1}
-                )))
+            )))
                 
             localStorage.setItem('cartItems', JSON.stringify(cartItems.map((item) => (item.title !== title ? item : {...existingItem, quantity: existingItem.quantity - 1} ))));
 
@@ -88,7 +88,7 @@ const CartProvider = (props) => {
     }, [])
 
 
-    
+
     const cartContext = {
         items: productsArr,
         cartItems: cartItems,

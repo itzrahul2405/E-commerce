@@ -1,18 +1,22 @@
 import "./App.css";
-import Navigationbar from "./components/Navigationbar";
-import Footer from "./components/Footer";
+import React, { Suspense } from 'react'
 import { useContext, useState } from "react";
-import Cart from "./components/Cart/Cart";
-import CartProvider from "./components/CartProvider";
-
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"; // Redirect is in version 5 of 'react-router-dom' not in version 6 , so we will use here Navigate
-
-import StorePage from "./components/pages/Store/StorePage";
-import AboutPage from "./components/pages/About/AboutPage";
-import HomePage from "./components/pages/Home/HomePage";
-import ContactUsPage from "./components/pages/ContactUs/ContactUsPage";
-import LoginForm from "./components/pages/login/LoginForm";
 import AuthContext from "./components/auth- context";
+
+
+
+const Navigationbar = React.lazy(() => import('./components/Navigationbar'));
+const Footer = React.lazy(() => import('./components/Footer'));
+const Cart = React.lazy(() => import('./components/Cart/Cart'));
+const CartProvider = React.lazy(() => import('./components/CartProvider'));
+const StorePage = React.lazy(() => import('./components/pages/Store/StorePage'));
+const AboutPage = React.lazy(() => import('./components/pages/About/AboutPage'));
+const HomePage = React.lazy(() => import('./components/pages/Home/HomePage'));
+const ContactUsPage = React.lazy(() => import('./components/pages/ContactUs/ContactUsPage'));
+const LoginForm = React.lazy(() => import('./components/pages/login/LoginForm'));
+
+
 
 
 // const router = createBrowserRouter([
@@ -44,16 +48,18 @@ function App() {
   ]);
 
   return (
-    <CartProvider>
-      <div className="App">
-        {isCartShown && <Cart onClose={hideCartHandler} />}
-        <Navigationbar onShow={showCartHandler} />
-      
-        <RouterProvider router={router} />
+    <Suspense fallback={<p>Loading...</p>}>
+      <CartProvider>
+        <div className="App">
+          {isCartShown && <Cart onClose={hideCartHandler} />}
+          <Navigationbar onShow={showCartHandler} />
+        
+          <RouterProvider router={router} />
 
-        <Footer />
-      </div>
-    </CartProvider>
+          <Footer />
+        </div>
+      </CartProvider>
+    </Suspense>
   );
 }
 
